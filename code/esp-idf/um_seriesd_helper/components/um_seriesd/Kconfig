@@ -1,0 +1,41 @@
+menu "UM Series[D] Helper"
+
+choice UM_SERIESD_BOARD
+    prompt "Select Series[D] board"
+    default UM_BOARD_TINYPICOD if IDF_TARGET_ESP32
+    default UM_BOARD_TINYC6D if IDF_TARGET_ESP32C6
+    default UM_BOARD_TINYS3D
+    config UM_BOARD_TINYS3D
+        bool "TinyS3[D]"
+        depends on IDF_TARGET_ESP32S3
+    config UM_BOARD_FEATHERS3D
+        bool "FeatherS3[D]"
+        depends on IDF_TARGET_ESP32S3
+    config UM_BOARD_PROS3D
+        bool "ProS3[D]"
+        depends on IDF_TARGET_ESP32S3
+    config UM_BOARD_EDGES3D
+        bool "EdgeS3[D]"
+        depends on IDF_TARGET_ESP32S3
+    config UM_BOARD_TINYPICOD
+        bool "TinyPICO[D]"
+        depends on IDF_TARGET_ESP32
+    config UM_BOARD_TINYC6D
+        bool "TinyC6[D]"
+        depends on IDF_TARGET_ESP32C6
+endchoice
+
+config UM_PIXEL_DEFAULT_BRIGHTNESS
+    int "Default pixel brightness (0..255)"
+    range 0 255
+    default 32
+
+config UM_IOX_I2C_ADDR
+    hex "FXL6408 IO expander I2C address"
+    depends on UM_BOARD_TINYC6D
+    range 0x43 0x44
+    default 0x43
+    help
+        0x43 with the FXL6408 ADDR pin tied low, 0x44 with it tied high.
+
+endmenu

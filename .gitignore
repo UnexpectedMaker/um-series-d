@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# ESP-IDF build output
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+
+# KiCAD local/backup files
+*-backups/
+fp-info-cache
+*.kicad_prl
+_autosave-*
+~*.lck
